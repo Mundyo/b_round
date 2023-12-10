@@ -13,10 +13,11 @@ const CreateAccount = () => {
   const [year, setYear] = useState(2000);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const postDataToBackend = async () => {
     try {
-      console.log('Data to be sent:', { firstName, lastName, day, month, year, phoneNumber, email });
+      console.log('Data to be sent:', { firstName, lastName, day, month, year, phoneNumber, email, password });
       const response = await fetch('http://localhost:3006/createAccount', {
         method: 'POST',
         headers: {
@@ -30,6 +31,7 @@ const CreateAccount = () => {
           year,
           phoneNumber,
           email,
+          password
         }),
       });
 
@@ -49,12 +51,17 @@ const CreateAccount = () => {
       if (!firstName || !lastName || day === '1' || month === '1' || year === '2000') {
         alert('Please fill all the fields!!');
       } else {
-        setStep(2); // Move to step 2
+        setStep(2);
       }
     } else if (step === 2) {
-      postDataToBackend();
+      if (!phoneNumber || !email || !password) {
+        alert('Please fill all the fields!!');
+      } else {
+        postDataToBackend();
+      }
     }
   };
+ 
   
   return (
     <div className="container mt-5">
@@ -64,7 +71,7 @@ const CreateAccount = () => {
 
           <form>
             {step === 1 && (
-              /* Added a wrapping div for step 1 content */
+              
               <div>
                 <div className="row mb-3">
                   <div className="half-width">
@@ -175,11 +182,10 @@ const CreateAccount = () => {
                   </button>
                 </div>
               </div>
-              /* Closing the wrapping div for step 1 content */
             )}
 
             {step === 2 && (
-              /* Added a wrapping div for step 2 content */
+              
               <div className='row mb-3'>
                 <div className="halfy-width">
                   <label htmlFor="PhoneNumber" className="form-labell1">
@@ -212,12 +218,24 @@ const CreateAccount = () => {
                     }}
                     required
                   />
+                      <label htmlFor="password" className="form-labell2">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control1"
+                    id="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
                   <button type="Submit" className="btn3 btn-primary" onClick={handleNext}>
                     Submit
                   </button> 
                 </div>
               </div>
-              /* Closing the wrapping div for step 2 content */
+             
             )}
 
             <div className="already">

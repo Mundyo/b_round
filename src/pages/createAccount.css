@@ -73,7 +73,6 @@ body::after{
    
   }
 
-  /* input first name and last name */
   .form-control{
     color: rgba(240, 248, 255, 0.757);
     font-size: bold;
@@ -93,10 +92,10 @@ body::after{
     
   }
 
- /* label on top of input */
+ 
 .form-label {
     display: block;
-    margin-bottom: 5px; /* Adjust the spacing between label and input */
+    margin-bottom: 5px; 
     margin-left: 40px;
     margin-top: 15px;
     color: rgba(240, 248, 255, 0.757);
@@ -104,7 +103,7 @@ body::after{
   
 
   
-  /* Optionally, you can adjust the width of the labels */
+
   .form-label {
     width: 100%;
   }
@@ -165,7 +164,7 @@ body::after{
     color: rgba(240, 248, 255, 0.757);
     text-decoration: none; /* Remove underlines */
     display: block; /* Make it a block-level element to control width and margins */
-    margin-top: 45px;
+    margin-top: 7rem;
     text-align: center;
     margin-left: 0.5rem;
 }
@@ -173,13 +172,13 @@ body::after{
 
 
 .already a:hover {
-    color:rgba(255, 0, 255, 0.514); ;
+    color:rgba(255, 0, 255, 0.514); 
     
 }
 
 
 .btn3{
-  margin-top:6rem ;
+  margin-top:4rem ;
   margin-bottom: 20px;
   width: 25rem;
   height: 2.5rem;
@@ -209,6 +208,13 @@ body::after{
   display: block;
   margin-bottom: 5px; /* Adjust the spacing between label and input */
   margin-left: 9rem;
+  margin-top: 15px;
+  color: rgba(240, 248, 255, 0.757);
+}
+.form-labell2 {
+  display: block;
+  margin-bottom: 5px; /* Adjust the spacing between label and input */
+  margin-left: 10.5rem;
   margin-top: 15px;
   color: rgba(240, 248, 255, 0.757);
 }

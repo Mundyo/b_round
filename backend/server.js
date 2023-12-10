@@ -32,26 +32,26 @@ db.connect((err)=>{
 
 
 app.post('/createAccount', (req, res, next) => {
-    const { firstName, lastName, year, month, day, phoneNumber, email } = req.body;
+    const { firstName, lastName, year, month, day, phoneNumber, email,  password} = req.body;
 
-    console.log('Received data:', { firstName, lastName, year, month, day , phoneNumber, email});
+    console.log('Received data:', { firstName, lastName, year, month, day , phoneNumber, email,  password});
 
-   
-    // const sql = 'INSERT INTO users (first_name, last_name, date_of_birth, phoneNumber, email) VALUES (NULL,NULL,NULL,NULL,NULL)';
-    const sql = 'INSERT INTO users (first_name, last_name, date_of_birth, phoneNumber, email) VALUES (?, ?, ?, ?, ?)';
+ 
 
-     db.query(sql, [firstName, lastName, year, month, day, phoneNumber, email],  (err, result) => {
-        // db.query(sql, [firstName, lastName, `${year}-${month}-${day}`, phoneNumber, email], (err, result) => {
+                const sql = 'INSERT INTO users (first_name, last_name, date_of_birth, phoneNumber, email,  password_hash) VALUES (?, ?, ?, ?, ?, ?)';
+                const formattedDate = `${year}-${month}-${day}`;
 
-        if (err) {
-            console.error('Error executing SQL query:', err);
-            res.status(500).json({ success: false, message: 'Internal server error' });
-        } else {
-            console.log('Account created successfully!');
-            res.status(201).json({ success: true, message: 'Account created successfully.' });
-        }
-        next();
-    });
+                db.query(sql, [firstName, lastName, formattedDate, phoneNumber, email,  password], (err, result) => {
+                    if (err) {
+                        console.error('Error executing SQL query:', err);
+                        res.status(500).json({ success: false, message: 'Internal server error' });
+                    } else {
+                        console.log('Account created successfully!');
+                        res.status(201).json({ success: true, message: 'Account created successfully.' });
+                    }
+                    next();
+                });
+
 });
 
 
@@ -70,3 +70,20 @@ app.listen(3006, ()=>{
 
 
 
+  
+    // const sql = 'INSERT INTO users (first_name, last_name, date_of_birth, phoneNumber, email) VALUES (NULL,NULL,NULL,NULL,NULL)';
+//     const sql = 'INSERT INTO users (first_name, last_name, date_of_birth, phoneNumber, email, password) VALUES (?, ?, ?, ?, ?)';
+//     const formattedDate = `${year}-${month}-${day}`;
+
+//      db.query(sql, [firstName, lastName, formattedDate, phoneNumber, email, password],  (err, result) => {
+//         // db.query(sql, [firstName, lastName, `${year}-${month}-${day}`, phoneNumber, email], (err, result) => {
+
+//         if (err) {
+//             console.error('Error executing SQL query:', err);
+//             res.status(500).json({ success: false, message: 'Internal server error' });
+//         } else {
+//             console.log('Account created successfully!');
+//             res.status(201).json({ success: true, message: 'Account created successfully.' });
+//         }
+//         next();
+//     });
